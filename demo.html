@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Funnel Social Profile Connector</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+        .benefits {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .benefits h3 {
+            margin-top: 0;
+            color: #2d5a2d;
+        }
+        .benefits ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .benefits li {
+            margin: 8px 0;
+            color: #2d5a2d;
+        }
+        .form-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .form-group {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        input[type="email"], input[type="url"], input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="email"]:focus, input[type="url"]:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .input-hint {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .result {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .strategies {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .strategy {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+        }
+        .strategy h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .search-query {
+            background: #f1f3f4;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        .confidence {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff3cd;
+            border-radius: 8px;
+            border: 1px solid #ffeaa7;
+        }
+        .demo-section h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Pre-Funnel Social Profile Connector</h1>
+        <p class="subtitle">Connect your LinkedIn & Twitter profiles for enhanced 1st/2nd degree lead scouting</p>
+        
+        <div class="benefits">
+            <h3>✅ Why This Approach is Better</h3>
+            <ul>
+                <li><strong>No OAuth setup needed</strong> - just copy/paste URLs</li>
+                <li><strong>Works immediately</strong> - no waiting for LinkedIn app approval</li>
+                <li><strong>More reliable</strong> - no token expiration issues</li>
+                <li><strong>User-friendly</strong> - anyone can do it in 30 seconds</li>
+                <li><strong>Enhanced targeting</strong> - leverage your existing network</li>
+            </ul>
+        </div>
+
+        <div class="form-section">
+            <h3>📝 Connect Your Profiles</h3>
+            
+            <div class="form-group">
+                <label for="user-email">Your Email (for user identification):</label>
+                <input type="email" id="user-email" placeholder="your@email.com" required>
+                <div class="input-hint">This creates your Pre-Funnel account</div>
+            </div>
+
+            <div class="form-group">
+                <label for="linkedin-url">LinkedIn Profile URL:</label>
+                <input type="url" id="linkedin-url" placeholder="https://linkedin.com/in/your-profile">
+                <div class="input-hint">Copy your LinkedIn profile URL from your browser</div>
+            </div>
+
+            <div class="form-group">
+                <label for="twitter-handle">Twitter Handle:</label>
+                <input type="text" id="twitter-handle" placeholder="@yourusername or yourusername">
+                <div class="input-hint">Your Twitter username (with or without @)</div>
+            </div>
+
+            <button onclick="connectProfiles()" id="connect-btn">
+                Connect Social Profiles
+            </button>
+        </div>
+
+        <div class="result" id="result"></div>
+
+        <div class="demo-section" id="demo-section" style="display: none;">
+            <h3>🎯 Test Enhanced Scouting</h3>
+            <p>Enter a target company to see how your social network can be leveraged for lead discovery:</p>
+            
+            <div class="form-group">
+                <label for="target-company">Target Company:</label>
+                <input type="text" id="target-company" placeholder="e.g., Microsoft, Google, Apple, Salesforce">
+            </div>
+            
+            <button onclick="generateStrategies()" id="strategies-btn">
+                Generate Enhanced Search Strategies
+            </button>
+            
+            <div id="strategies-result"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentUserId = null;
+
+        async function connectProfiles() {
+            const email = document.getElementById('user-email').value.trim();
+            const linkedinUrl = document.getElementById('linkedin-url').value.trim();
+            const twitterHandle = document.getElementById('twitter-handle').value.trim();
+            
+            if (!email) {
+                showResult('Please enter your email address', 'error');
+                return;
+            }
+            
+            if (!linkedinUrl && !twitterHandle) {
+                showResult('Please enter at least one social profile (LinkedIn URL or Twitter handle)', 'error');
+                return;
+            }
+
+            // Disable button and show loading
+            const btn = document.getElementById('connect-btn');
+            btn.disabled = true;
+            btn.textContent = 'Connecting...';
+
+            try {
+                // First create/get user
+                const userResponse = await fetch('/api/user/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                });
+
+                if (!userResponse.ok) {
+                    throw new Error('Failed to create user account');
+                }
+
+                const userData = await userResponse.json();
+                currentUserId = userData.user_id;
+
+                // Connect social profiles
+                const profileResponse = await fetch('/api/connect-social-profiles', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: currentUserId,
+                        profiles: {
+                            linkedin_url: linkedinUrl,
+                            twitter_handle: twitterHandle
+                        }
+                    })
+                });
+
+                const profileData = await profileResponse.json();
+
+                if (profileResponse.ok && profileData.success) {
+                    showResult(`
+                        <h4>✅ Social Profiles Connected Successfully!</h4>
+                        <p><strong>User ID:</strong> ${currentUserId}</p>
+                        <p><strong>Connected Profiles:</strong> ${profileData.connected_profiles.join(', ')}</p>
+                        <p><strong>Status:</strong> ${profileData.message}</p>
+                        ${profileData.errors.length > 0 ? `<p><strong>Warnings:</strong> ${profileData.errors.join(', ')}</p>` : ''}
+                        <p>🎯 You can now test enhanced scouting strategies below!</p>
+                    `, 'success');
+                    
+                    // Show demo section
+                    document.getElementById('demo-section').style.display = 'block';
+                } else {
+                    showResult(`Failed to connect profiles: ${profileData.error || 'Unknown error'}`, 'error');
+                }
+            } catch (error) {
+                showResult(`Error: ${error.message}`, 'error');
+            }
+
+            // Re-enable button
+            btn.disabled = false;
+            btn.textContent = 'Connect Social Profiles';
+        }
+
+        async function generateStrategies() {
+            if (!currentUserId) {
+                showResult('Please connect your social profiles first', 'error');
+                return;
+            }
+
+            const targetCompany = document.getElementById('target-company').value.trim();
+            if (!targetCompany) {
+                showResult('Please enter a target company name', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('strategies-btn');
+            btn.disabled = true;
+            btn.textContent = 'Generating Strategies...';
+
+            try {
+                const response = await fetch(`/api/enhanced-search-strategies/${currentUserId}/${encodeURIComponent(targetCompany)}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    displayStrategies(data, targetCompany);
+                } else {
+                    showResult(`Failed to generate strategies: ${data.error || 'Unknown error'}`, 'error');
+                }
+            } catch (error) {
+                showResult(`Error generating strategies: ${error.message}`, 'error');
+            }
+
+            btn.disabled = false;
+            btn.textContent = 'Generate Enhanced Search Strategies';
+        }
+
+        function displayStrategies(data, targetCompany) {
+            const resultDiv = document.getElementById('strategies-result');
+            
+            let html = `
+                <div class="strategies">
+                    <h3>🎯 Enhanced Search Strategies for "${targetCompany}"</h3>
+                    <p><strong>Network Status:</strong> 
+                        LinkedIn: ${data.network_insights.has_linkedin ? '✅ Connected' : '❌ Not connected'} | 
+                        Twitter: ${data.network_insights.has_twitter ? '✅ Connected' : '❌ Not connected'}
+                    </p>
+            `;
+
+            if (data.linkedin_strategies && data.linkedin_strategies.length > 0) {
+                html += '<h4>🔗 LinkedIn Network Strategies:</h4>';
+                data.linkedin_strategies.forEach(strategy => {
+                    html += `
+                        <div class="strategy">
+                            <h4>${strategy.description}</h4>
+                            <div class="search-query">${strategy.search_query}</div>
+                            <div class="confidence">
+                                Confidence: ${(strategy.confidence * 100).toFixed(0)}% | 
+                                ${strategy.reasoning}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            if (data.twitter_strategies && data.twitter_strategies.length > 0) {
+                html += '<h4>🐦 Twitter Network Strategies:</h4>';
+                data.twitter_strategies.forEach(strategy => {
+                    html += `
+                        <div class="strategy">
+                            <h4>${strategy.description}</h4>
+                            <div class="search-query">${strategy.search_query}</div>
+                            <div class="confidence">
+                                Confidence: ${(strategy.confidence * 100).toFixed(0)}% | 
+                                ${strategy.reasoning}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            if ((!data.linkedin_strategies || data.linkedin_strategies.length === 0) && 
+                (!data.twitter_strategies || data.twitter_strategies.length === 0)) {
+                html += `
+                    <div class="strategy">
+                        <h4>No enhanced strategies available</h4>
+                        <p>Connect your LinkedIn and Twitter profiles above to unlock network-based search strategies.</p>
+                    </div>
+                `;
+            }
+
+            html += `
+                    <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 6px;">
+                        <h4>💡 How to Use These Strategies:</h4>
+                        <ol>
+                            <li>Copy the search queries above</li>
+                            <li>Paste them into Google or LinkedIn search</li>
+                            <li>Find 1st/2nd degree connections at your target company</li>
+                            <li>Reach out with warm introductions mentioning mutual connections</li>
+                        </ol>
+                    </div>
+                </div>
+            `;
+
+            resultDiv.innerHTML = html;
+        }
+
+        function showResult(message, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = `result ${type}`;
+            resultDiv.innerHTML = message;
+            resultDiv.style.display = 'block';
+            
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Auto-focus email field
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('user-email').focus();
+        });
+    </script>
+</body>
+</html> 
